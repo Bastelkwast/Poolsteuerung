@@ -2,6 +2,7 @@
   Als Sensor wird der DS18B20 verwendet
   Am Serialmonitor werden die Adressen der angeschlossenen Sensoren auslesen damit man sie in den Variablen anpassen kann*/
 
+#include <Wire.h>
 #include <OneWire.h> // http://www.arduino.cc/playground/Learning/OneWire
 #include <DallasTemperature.h> // http://milesburton.com/index.php?title=Dallas_Temperature_Control_Library
 #include <LiquidCrystal.h>
@@ -122,6 +123,7 @@ void MainMenuBtn();
 char ReadKeypad();
 void WaitBtnRelease();
 void lookUpSensors();
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 
 // ******************************************************* Tempcheck *************************************************
@@ -228,6 +230,10 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
+      delay(5000);
+      lcd.print("Reset");
+      delay(5000); 
+      resetFunc();  //call reset
     }
     pumpstat();
   }
@@ -243,6 +249,10 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
+      delay(5000);
+      lcd.print("Reset");
+      delay(5000); 
+      resetFunc();  //call reset
     }
     pumpstat();
   }
@@ -259,6 +269,10 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
+      delay(5000);
+      lcd.print("Reset");
+      delay(5000); 
+      resetFunc();  //call reset
     }
     pumpstat();
   }
