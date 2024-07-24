@@ -145,6 +145,8 @@ void setup()
 }
 
 //****************************************** Soft Reset ************************************************
+void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
 void SoftReset()
 {
   delay(5000);
@@ -152,11 +154,11 @@ void SoftReset()
   lcd.setCursor(0, 0);
   lcd.print("Software Reset");
   delay(5000);
-  //resetFunc();
+  resetFunc();
   
   }
 
-void(* resetFunc) (void) = 0; //declare reset function @ address 0
+
 
 //***************************************************** loop ***********************************************
 void loop()
