@@ -1,6 +1,7 @@
 /*Das ist eine Steuerung für einen Pool die mit normalen Bauteilen wie Arduino Uno, Shield und Relais aufgebaut werden kann.
   Als Sensor wird der DS18B20 verwendet
-  Am Serialmonitor werden die Adressen der angeschlossenen Sensoren auslesen damit man sie in den Variablen anpassen kann*/
+  Am Serialmonitor werden die Adressen der angeschlossenen Sensoren auslesen damit man sie in den Variablen anpassen kann
+  Software Reset bei Sensorfehler eingebaut*/
 
 #include <OneWire.h> // http://www.arduino.cc/playground/Learning/OneWire
 #include <DallasTemperature.h> // http://milesburton.com/index.php?title=Dallas_Temperature_Control_Library
