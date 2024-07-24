@@ -12,14 +12,14 @@ LiquidCrystal lcd(8, 9, 4, 5, 6, 7); //Angabe der erforderlichen Pins
 #define ONE_WIRE_BUS A5
 OneWire oneWire(ONE_WIRE_BUS); // Einrichten des OneWire Bus um die Daten der Temperaturfühler abzurufen
 
-char firmwareversion[] = "Rev.4";
+char firmwareversion[] = "Rev.4.1";
 
 //Variablen für die Temperatursensoren
 #define TEMPERATURE_PRECISION 9
 
 // Addressen der 4 DS18B20
 uint8_t sensor0[8] = { 0x28, 0x3, 0x67, 0x94, 0x97, 0x8, 0x3, 0x2E }; //Panel
-uint8_t sensor1[8] = { 0x28, 0x8E, 0x63, 0x94, 0x97, 0x1, 0x3, 0x23 }; //Pool
+uint8_t sensor1[8] = { 0x28, 0x70, 0x4E, 0x94, 0x97, 0xC, 0x3, 0xDF }; //Pool
 uint8_t sensor2[8] = { 0x28, 0x5B, 0x1D, 0x94, 0x97, 0x12, 0x3, 0x7A }; //Vorlauf
 uint8_t sensor3[8] = { 0x28, 0xF, 0x51, 0x94, 0x97, 0x8, 0x3, 0x4B }; //Rücklauf
 
@@ -145,6 +145,17 @@ void setup()
 }
 
 //****************************************** Soft Reset ************************************************
+void SoftReset()
+{
+  delay(5000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Software Reset");
+  delay(5000);
+  //resetFunc();
+  
+  }
+
 void(* resetFunc) (void) = 0; //declare reset function @ address 0
 
 //***************************************************** loop ***********************************************
@@ -313,10 +324,7 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
-      delay(5000);
-      lcd.print("Reset");
-      delay(5000); 
-      resetFunc();  //call reset
+      SoftReset();  //call reset
     }
     pumpstat();
   }
@@ -332,10 +340,7 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
-      delay(5000);
-      lcd.print("Reset");
-      delay(5000); 
-      resetFunc();  //call reset
+      SoftReset();  //call reset
     }
     pumpstat();
   }
@@ -352,10 +357,7 @@ void LCD_temp() {
     else  {
       //lcd.setCursor(0, 1);
       lcd.print("fail");
-      delay(5000);
-      lcd.print("Reset");
-      delay(5000); 
-      resetFunc();  //call reset
+      SoftReset;  //call reset
     }
     pumpstat();
   }
